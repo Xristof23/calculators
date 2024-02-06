@@ -1,26 +1,5 @@
 import React from "react";
 import "./styles.css";
-const firstInput = document.getElementById("firstfactor");
-const firstFactor = "123.456";
-const multiplyButton = document.querySelector("[data-js='multiply-button']");
-
-function ShowInput() {
-  firstInput.addEventListener("input", () => {
-    const firstFactor = firstInput.value;
-    return <p>{firstFactor}</p>;
-  });
-}
-
-
-function DeletePoint(a) {
-  const withoutPoint = getIntegerString(a) + getFractionString(a);
-  console.log(withoutPoint);
-  return (
-    <article>
-      <p>{withoutPoint}</p>
-    </article>
-  );
-}
 
 export default function App() {
   return (
@@ -38,7 +17,6 @@ export default function App() {
         <div className="inputs">
           <label htmlFor="firstfactor">First factor</label>
           <input id="firstfactor"></input>
-          {/* <ShowInput /> */}
           <label htmlFor="secondfactor ">Second factor</label>
           <input id="secondfactor"></input>
           <button className="calculate-button" data-js="multiply-button">
