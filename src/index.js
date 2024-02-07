@@ -85,6 +85,7 @@ console.log("Schlauer Kerl meint: " + correctAddition("1.4", "3.6"));
 
 console.clear;
 
+//Subtraction
 function correctSubtraction(a, b) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
@@ -109,8 +110,8 @@ function correctSubtraction(a, b) {
     return result;
   }
   const biggerB = deletePoint(b) * 10 ** -decDiff;
-  console.log(biggerB);
-  const pointlessDiff = subtraction(Number(biggerB), Number(deletePoint(a)));
+  console.log("biggerB: " + biggerB);
+  const pointlessDiff = subtraction(Number(deletePoint(a)), Number(biggerB));
   const integerPlaces = pointlessDiff.toString().length - aDecimalPlaces;
   const result =
     pointlessDiff.toString().substring(0, integerPlaces) +
@@ -120,7 +121,25 @@ function correctSubtraction(a, b) {
       .substring(integerPlaces, pointlessDiff.toString().length);
   return result;
 }
-console.log(correctSubtraction("4.1025", "1.5"));
+// console.log(correctSubtraction("-4.1025", "-1.5"));
+
+//Division in writing
+function getPlaces(a) {
+  let aPlaces = 0;
+  a.toString().includes(".")
+    ? (aPlaces = a.toString().length - 1)
+    : (aPlaces = a.toString().length);
+  return aPlaces;
+}
+console.log(getPlaces(234));
+
+function writingDivision(a, b) {
+  const aDecimalPlaces = Number(getFractionString(a).length);
+  const bDecimalPlaces = Number(getFractionString(b).length);
+  return "So net";
+}
+console.log(writingDivision("488.6", "8"));
+//Input handling
 const firstInput = document.getElementById("firstfactor");
 const firstFactor = "123.456";
 const multiplyButton = document.querySelector("[data-js='multiply-button']");
@@ -129,6 +148,18 @@ function handleInput() {
   const firstFactor = firstInput.value;
   console.log(firstFactor);
 }
+
+// const turtles = [
+//   "christof",
+//   "jan",
+//   "jana",
+//   "sonja",
+//   "swetha",
+//   "paul",
+//   "mariia",
+// ];
+// console.log(turtles);
+// console.log(turtles.slice().sort());
 
 root.render(
   <StrictMode>
