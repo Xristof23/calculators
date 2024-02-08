@@ -27,7 +27,7 @@ export default function App() {
           <p className="inputs" data-js="product-result"></p>
         </div>
       </div>
-      <StringToWords />
+      {/* <StringToWords /> */}
     </main>
   );
 }

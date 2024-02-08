@@ -136,7 +136,7 @@ console.log(getPlaces(234));
 function writingDivision(a, b) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
-  return "So net";
+  return "So net (divison unfinished)";
 }
 console.log(writingDivision("488.6", "8"));
 //Input handling
