@@ -11,6 +11,8 @@ body {
 }
 
 .calculator {
+  width: 800px;
+
   border: 2px solid black;
   margin: 5px;
 }
@@ -27,16 +29,29 @@ body {
   line-height: 1.2rem;
 }
 .inputs {
-  display: flex;
-  flex-flow: column;
+  display: grid;
+  grid-template-columns: 2fr 2fr 4fr;
+  grid-template-rows: 2fr 2fr 2fr 2fr;
   text-align: left;
   border: 1px solid black;
-  margin: 20px;
+  width: 80%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+.result {
+  text-align: left;
+  border: 1px solid black;
+  width: 150px;
+  margin: 5px;
   padding: 15px;
   font-size: 1.2rem;
   line-height: 1.2rem;
 }
-
+.calc-underlined {
+  text-decoration: underline;
+}
 h1 {
   font-size: 3rem;
 }
