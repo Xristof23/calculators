@@ -47,23 +47,32 @@ function MultiplyInWriting({ a, b }) {
       <p className="calc-write">{secondLine}</p>
       <p className="calc-result">{result}</p>
 
-      <button
-        className="calculate-button"
-        // onClick={(() => )}
-      >
-        =
-      </button>
-
       <p>
         Result <output className="result">{result}</output>
       </p>
     </>
   );
 }
-// console.log("MIW: ", MultiplyInWriting("111", "23"));
+
+function MultiplyWithArray(a, b) {
+  const firstArray = a.split("");
+  const secondArray = b.split("");
+  console.log(firstArray);
+  console.log(secondArray);
+}
+MultiplyWithArray("250", "53");
+
 export default function App() {
   const [firstFactor, setFirstFactor] = useState("0");
   const [secondFactor, setSecondFactor] = useState("0");
+  const [operation, setOperation] = useState("multiplication");
+
+  // write function to start component MiW?
+  function handleCalculation() {
+    console.log("Handle calc");
+    console.log(operation);
+  }
+
   return (
     <main>
       <article>
@@ -85,6 +94,23 @@ export default function App() {
               onChange={(event) => setFirstFactor(event.target.value)}
             ></input>
           </label>
+          <select
+            id="operation"
+            value={operation}
+            onChange={(event) => setOperation(event.target.value)}
+          >
+            <option value="">Choose an operation</option>
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+          </select>
+          {/* <button
+            className="calculate-button"
+            
+          >
+            *
+          </button> */}
           <label htmlFor="secondfactor">
             Second factor
             <input
@@ -93,9 +119,14 @@ export default function App() {
               onChange={(event) => setSecondFactor(event.target.value)}
             ></input>
           </label>
+          <button className="calculate-button" onClick={handleCalculation}>
+            =
+          </button>
           <div>
             <p className="calc-write">Calculation</p>
-            <MultiplyInWriting a={firstFactor} b={secondFactor} />
+            {operation == "multiply" ? (
+              <MultiplyInWriting a={firstFactor} b={secondFactor} />
+            ) : null}
           </div>
         </div>
       </div>
@@ -124,7 +155,7 @@ function StringToArray() {
 const testText = "Hallo wie geht es dir?";
 function StringToWords() {
   const testArray = testText.split(" ");
-  // console.log(firstArray);
+
   return (
     <article>
       <p>
