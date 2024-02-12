@@ -127,23 +127,24 @@ function getPlaces(a) {
     : (aPlaces = a.toString().length);
   return aPlaces;
 }
-console.log(getPlaces(234));
 
 function writingDivision(a, b) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
   return "So net (divison unfinished)";
 }
-console.log(writingDivision("488.6", "8"));
-//Input handling
-const firstInput = document.getElementById("firstfactor");
-const firstFactor = "123.456";
-const multiplyButton = document.querySelector("[data-js='multiply-button']");
+// console.log(writingDivision("488.6", "8"));
 
-function handleInput() {
-  const firstFactor = firstInput.value;
-  console.log(firstFactor);
-}
+//Input handling
+
+// const firstInput = document.getElementById("firstfactor");
+// const firstFactor = "123.456";
+// const multiplyButton = document.querySelector("[data-js='multiply-button']");
+
+// function handleInput() {
+//   const firstFactor = firstInput.value;
+//   console.log(firstFactor);
+// }
 
 // const turtles = [
 //   "christof",

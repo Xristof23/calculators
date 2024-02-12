@@ -30,8 +30,8 @@ body {
 }
 .inputs {
   display: grid;
-  grid-template-columns: 2fr 2fr 4fr;
-  grid-template-rows: 2fr 2fr 2fr 2fr;
+  grid-template-columns: 4fr 4fr;
+  grid-template-rows: 80px 120px 100px;
   text-align: left;
   border: 1px solid black;
   width: 80%;
@@ -45,12 +45,24 @@ body {
   border: 1px solid black;
   width: 150px;
   margin: 5px;
-  padding: 15px;
+  padding: 5px;
   font-size: 1.2rem;
   line-height: 1.2rem;
 }
 .calc-underlined {
   text-decoration: underline;
+  margin: 0px;
+  padding: 0px;
+}
+.calc-result {
+  text-decoration: overline;
+  margin: 2px;
+  padding: 0px;
+}
+
+.calc-write {
+  margin: 2px;
+  padding: 0px;
 }
 h1 {
   font-size: 3rem;

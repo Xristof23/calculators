@@ -27,30 +27,43 @@ function MultiplyInWriting({ a, b }) {
   const bDecimalPlaces = Number(getFractionString(b).length);
   const firstLine = a * Number(b.toString().substring(0, 1));
   const secondLine = a * Number(b.toString().substring(1, 2));
-  console.log("firstLine", firstLine);
-  console.log("secondLine", secondLine);
   const decimalSum = addition(aDecimalPlaces, bDecimalPlaces);
   const pointlessProduct = multiplication(deletePoint(a), deletePoint(b));
   const decimalSumPlaces = Number(pointlessProduct.toString().length);
   const integerPlaces = decimalSumPlaces - Number(decimalSum);
-  const result =
-    pointlessProduct.toString().substring(0, integerPlaces) +
-    "." +
-    pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces);
+  let result = pointlessProduct;
+  decimalSum == 0
+    ? (result = pointlessProduct)
+    : (result =
+        pointlessProduct.toString().substring(0, integerPlaces) +
+        "." +
+        pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces));
   return (
     <>
       <p className="calc-underlined">
         {a}*{b}
       </p>
-      <p>{firstLine}</p>
-      <p>{result}</p>
+      <p className="calc-write">{firstLine}</p>
+      <p className="calc-write">{secondLine}</p>
+      <p className="calc-result">{result}</p>
+
+      <button
+        className="calculate-button"
+        // onClick={(() => )}
+      >
+        =
+      </button>
+
+      <p>
+        Result <output className="result">{result}</output>
+      </p>
     </>
   );
 }
-console.log("MIW: ", MultiplyInWriting("111", "23"));
+// console.log("MIW: ", MultiplyInWriting("111", "23"));
 export default function App() {
-  const [firstFactor, setFirstFactor] = useState("");
-  const [secondFactor, setSecondFactor] = useState("");
+  const [firstFactor, setFirstFactor] = useState("0");
+  const [secondFactor, setSecondFactor] = useState("0");
   return (
     <main>
       <article>
@@ -81,18 +94,9 @@ export default function App() {
             ></input>
           </label>
           <div>
-            <p>Calculation</p>
-            <MultiplyInWriting a="111" b="23" />
-            {/*  <p className="calc-underlined">
-              {firstFactor}*{secondFactor}
-            </p>
-            <p>{firstLine}</p> */}
+            <p className="calc-write">Calculation</p>
+            <MultiplyInWriting a={firstFactor} b={secondFactor} />
           </div>
-          <button className="calculate-button">=</button>
-
-          <p data-js="product-result">
-            Result <output className="result">...</output>
-          </p>
         </div>
       </div>
       {/* <StringToWords /> */}
