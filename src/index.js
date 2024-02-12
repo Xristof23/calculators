@@ -7,6 +7,8 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 // testdrive (alle functionen später auslagern)
+const testDrive = "4.52";
+const y = "3.1";
 function getIntegerString(a) {
   if (a.includes(".")) {
     return a.split(".")[0];
@@ -19,16 +21,10 @@ function getFractionString(a) {
   }
   return "";
 }
-const testDrive = "4.52";
-const y = "3.1";
+
 function deletePoint(a) {
   const withoutPoint = getIntegerString(a) + getFractionString(a);
   return withoutPoint;
-  /* (
-    <article>
-      <p>{withoutPoint}</p>
-    </article>
-  ) */
 }
 const multiplication = (a, b) => a * b;
 const addition = (a, b) => Number(a) + Number(b);
@@ -47,8 +43,8 @@ function correctMultiplication(a, b) {
     pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces);
   return result;
 }
-console.log("Dummer Hans: " + multiplication(testDrive, y));
-console.log("Schlauer Kerl: " + correctMultiplication(testDrive, y));
+// console.log("Dummer Hans: " + multiplication(testDrive, y));
+// console.log("Schlauer Kerl: " + correctMultiplication(testDrive, y));
 
 function correctAddition(a, b) {
   const aDecimalPlaces = Number(getFractionString(a).length);
@@ -81,7 +77,7 @@ function correctAddition(a, b) {
       .substring(integerPlaces, pointlessSum.toString().length);
   return result;
 }
-console.log("Schlauer Kerl meint: " + correctAddition("1.4", "3.6"));
+// console.log("Schlauer Kerl meint: " + correctAddition("1.4", "3.6"));
 
 console.clear;
 
@@ -131,23 +127,24 @@ function getPlaces(a) {
     : (aPlaces = a.toString().length);
   return aPlaces;
 }
-console.log(getPlaces(234));
 
 function writingDivision(a, b) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
   return "So net (divison unfinished)";
 }
-console.log(writingDivision("488.6", "8"));
-//Input handling
-const firstInput = document.getElementById("firstfactor");
-const firstFactor = "123.456";
-const multiplyButton = document.querySelector("[data-js='multiply-button']");
+// console.log(writingDivision("488.6", "8"));
 
-function handleInput() {
-  const firstFactor = firstInput.value;
-  console.log(firstFactor);
-}
+//Input handling
+
+// const firstInput = document.getElementById("firstfactor");
+// const firstFactor = "123.456";
+// const multiplyButton = document.querySelector("[data-js='multiply-button']");
+
+// function handleInput() {
+//   const firstFactor = firstInput.value;
+//   console.log(firstFactor);
+// }
 
 // const turtles = [
 //   "christof",
