@@ -5,13 +5,13 @@ const multiplication = (a, b) => a * b;
 const addition = (a, b) => Number(a) + Number(b);
 
 function getIntegerString(a) {
-  if (a.includes(".")) {
+  if (a.toString().includes(".")) {
     return a.split(".")[0];
   }
   return a;
 }
 function getFractionString(a) {
-  if (a.includes(".")) {
+  if (a.toString().includes(".")) {
     return a.split(".")[1];
   }
   return "";
@@ -22,11 +22,13 @@ function deletePoint(a) {
   return withoutPoint;
 }
 
-function MultiplyInWriting(a, b) {
+function MultiplyInWriting({ a, b }) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
-  const firstLine = a * Number(b.substring(0, 1));
-  console.log(firstLine);
+  const firstLine = a * Number(b.toString().substring(0, 1));
+  const secondLine = a * Number(b.toString().substring(1, 2));
+  console.log("firstLine", firstLine);
+  console.log("secondLine", secondLine);
   const decimalSum = addition(aDecimalPlaces, bDecimalPlaces);
   const pointlessProduct = multiplication(deletePoint(a), deletePoint(b));
   const decimalSumPlaces = Number(pointlessProduct.toString().length);
@@ -35,7 +37,15 @@ function MultiplyInWriting(a, b) {
     pointlessProduct.toString().substring(0, integerPlaces) +
     "." +
     pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces);
-  return result;
+  return (
+    <>
+      <p className="calc-underlined">
+        {a}*{b}
+      </p>
+      <p>{firstLine}</p>
+      <p>{result}</p>
+    </>
+  );
 }
 console.log("MIW: ", MultiplyInWriting("111", "23"));
 export default function App() {
@@ -72,10 +82,11 @@ export default function App() {
           </label>
           <div>
             <p>Calculation</p>
-            <p className="calc-underlined">
+            <MultiplyInWriting a="111" b="23" />
+            {/*  <p className="calc-underlined">
               {firstFactor}*{secondFactor}
             </p>
-            {/* <p>{firstLine}</p> */}
+            <p>{firstLine}</p> */}
           </div>
           <button className="calculate-button">=</button>
 
