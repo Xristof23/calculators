@@ -7,9 +7,11 @@
 body {
   margin: 0;
   font-family: system-ui;
-  text-align: center;
+  text-align: left;
 }
-
+p {
+  margin: 5px;
+}
 .calculator {
   width: 900px;
 
@@ -31,7 +33,7 @@ body {
 .inputs {
   display: grid;
   grid-template-columns: 6fr 1fr 6fr 1fr;
-  grid-template-rows: 60px 120px 100px;
+  grid-template-rows: 80px 120px 100px;
   text-align: left;
   border: 1px solid black;
   width: 90%;
@@ -51,23 +53,25 @@ body {
 }
 .calc-underlined {
   text-decoration: underline;
-  margin: 0px;
-  padding: 0px;
+  margin: 2px;
+  padding: 2px;
 }
 .calc-result {
   text-decoration: overline;
   margin: 2px;
-  padding: 0px;
+  padding: 2px;
 }
 
 .calc-write {
   margin: 2px;
-  padding: 0px;
+  padding: 2px;
 }
 h1 {
   font-size: 3rem;
+  text-align: center;
 }
 
 h2 {
   font-size: 1.5rem;
+  text-align: center;
 }

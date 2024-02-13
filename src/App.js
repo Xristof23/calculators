@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import "./styles.css";
+import { uid } from "uid";
 
 const multiplication = (a, b) => a * b;
 const addition = (a, b) => Number(a) + Number(b);
@@ -40,6 +41,7 @@ function MultiplyInWriting({ a, b }) {
         pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces));
   return (
     <>
+      <p className="calc-write">Multiplication</p>
       <p className="calc-underlined">
         {a}*{b}
       </p>
@@ -54,13 +56,23 @@ function MultiplyInWriting({ a, b }) {
   );
 }
 
-function MultiplyWithArray(a, b) {
-  const firstArray = a.split("");
-  const secondArray = b.split("");
-  console.log(firstArray);
-  console.log(secondArray);
+function MultiplyWithArray({ a, b }) {
+  const firstCyphers = a.split("");
+  const secondCyphers = b.split("");
+  const result = multiplication(a, b);
+  return (
+    <div>
+      <p className="calc-write">Multiplication (array based)</p>
+      <p className="calc-underlined">
+        {a}*{b}
+      </p>
+      {secondCyphers.map((cypher) => (
+        <p key={uid(7)}>{multiplication(Number(a), Number(cypher))}</p>
+      ))}
+      <p className="calc-result">{result}</p>
+    </div>
+  );
 }
-MultiplyWithArray("250", "53");
 
 export default function App() {
   const [firstFactor, setFirstFactor] = useState("0");
@@ -83,8 +95,8 @@ export default function App() {
           All the way back to primary school ...{" "}
         </p>
       </article>
-      <div className="calculator">
-        <h2>Multiply</h2>
+      <section className="calculator">
+        <h2>Calculator (incomplete)</h2>
         <div className="inputs">
           <label htmlFor="firstfactor">
             First factor
@@ -101,16 +113,13 @@ export default function App() {
           >
             <option value="">Choose an operation</option>
             <option value="add">+</option>
-            <option value="subtract">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
+            <option value="subtract">- subtraction</option>
+            <option value="multiply">* multiply in writing</option>
+            <option value="multiply with array">* multiply (array)</option>
+            <option value="divide" disabled>
+              / division
+            </option>
           </select>
-          {/* <button
-            className="calculate-button"
-            
-          >
-            *
-          </button> */}
           <label htmlFor="secondfactor">
             Second factor
             <input
@@ -123,13 +132,13 @@ export default function App() {
             =
           </button>
           <div>
-            <p className="calc-write">Calculation</p>
             {operation == "multiply" ? (
               <MultiplyInWriting a={firstFactor} b={secondFactor} />
             ) : null}
           </div>
+          <MultiplyWithArray a={firstFactor} b={secondFactor} />
         </div>
-      </div>
+      </section>
       {/* <StringToWords /> */}
     </main>
   );
