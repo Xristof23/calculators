@@ -59,15 +59,23 @@ function MultiplyInWriting({ a, b }) {
 function MultiplyWithArray({ a, b }) {
   const firstCyphers = a.split("");
   const secondCyphers = b.split("");
-  const result = multiplication(a, b);
+  const arrayToSum = secondCyphers.map(
+    (cypher) =>
+      a *
+      cypher *
+      10 ** (secondCyphers.length - secondCyphers.indexOf(cypher) - 1)
+  );
+
+  const result = arrayToSum.reduce(addition, 0);
+
   return (
     <div>
       <p className="calc-write">Multiplication (array based)</p>
       <p className="calc-underlined">
         {a}*{b}
       </p>
-      {secondCyphers.map((cypher) => (
-        <p key={uid(7)}>{multiplication(Number(a), Number(cypher))}</p>
+      {arrayToSum.map((line) => (
+        <p key={uid(7)}>{line}</p>
       ))}
       <p className="calc-result">{result}</p>
     </div>
