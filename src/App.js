@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import { uid } from "uid";
 
@@ -22,8 +22,8 @@ function deletePoint(a) {
   const withoutPoint = getIntegerString(a) + getFractionString(a);
   return withoutPoint;
 }
-
-function MultiplyInWriting({ a, b }) {
+// Two Lines Max Multiply
+function MultiplyInWritingTwo({ a, b }) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
   const firstLine = a * Number(b.toString().substring(0, 1));
@@ -40,8 +40,8 @@ function MultiplyInWriting({ a, b }) {
         "." +
         pointlessProduct.toString().substring(integerPlaces, decimalSumPlaces));
   return (
-    <>
-      <p className="calc-write">Multiplication</p>
+    <div>
+      <p className="calc-write">Multiplication(2 lines max)</p>
       <p className="calc-underlined">
         {a}*{b}
       </p>
@@ -52,11 +52,11 @@ function MultiplyInWriting({ a, b }) {
       <p>
         Result <output className="result">{result}</output>
       </p>
-    </>
+    </div>
   );
 }
 
-function MultiplyWithArray({ a, b }) {
+function MultiplyInWriting({ a, b }) {
   const aDecimalPlaces = Number(getFractionString(a).length);
   const bDecimalPlaces = Number(getFractionString(b).length);
   const allDecimalPlaces = addition(aDecimalPlaces, bDecimalPlaces);
@@ -66,10 +66,8 @@ function MultiplyWithArray({ a, b }) {
     (cypher, index) =>
       deletePoint(a) * cypher * 10 ** (secondCyphers.length - index - 1)
   );
-
   /*   const arrayToIndices = secondCyphers.map((cypher, index) => index);
   console.log(arrayToIndices); */
-
   const provResult = arrayToSum.reduce(addition, 0);
   const allPlaces = Number(provResult.toString().length);
   const integerPlaces = provResult.toString().length - Number(allDecimalPlaces);
@@ -88,7 +86,9 @@ function MultiplyWithArray({ a, b }) {
         {a}*{b}
       </p>
       {arrayToSum.map((line) => (
-        <p key={uid(7)}>{line}</p>
+        <p className="calc-write" key={uid(7)}>
+          {line}
+        </p>
       ))}
       <p className="calc-result">{result}</p>
     </div>
@@ -129,14 +129,20 @@ export default function App() {
           </label>
           <select
             id="operation"
+            className="select-button"
             value={operation}
             onChange={(event) => setOperation(event.target.value)}
           >
             <option value="">Choose an operation</option>
-            <option value="add">+</option>
-            <option value="subtract">- subtraction</option>
+            <option value="add">+ addition</option>
+            <option value="subtract" disabled>
+              - subtraction
+            </option>
+
             <option value="multiply">* multiply in writing</option>
-            <option value="multiply with array">* multiply (array)</option>
+            <option value="multiply2">
+              * multiply in writing (two lines max)
+            </option>
             <option value="divide" disabled>
               / division
             </option>
@@ -152,12 +158,13 @@ export default function App() {
           <button className="calculate-button" onClick={handleCalculation}>
             =
           </button>
-          <div>
-            {operation == "multiply" ? (
-              <MultiplyInWriting a={firstFactor} b={secondFactor} />
-            ) : null}
-          </div>
-          <MultiplyWithArray a={firstFactor} b={secondFactor} />
+
+          {operation == "multiply" ? (
+            <MultiplyInWriting a={firstFactor} b={secondFactor} />
+          ) : null}
+          {operation == "multiply2" ? (
+            <MultiplyInWritingTwo a={firstFactor} b={secondFactor} />
+          ) : null}
         </div>
       </section>
       {/* <StringToWords /> */}
