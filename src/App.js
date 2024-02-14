@@ -57,16 +57,29 @@ function MultiplyInWriting({ a, b }) {
 }
 
 function MultiplyWithArray({ a, b }) {
+  const aDecimalPlaces = Number(getFractionString(a).length);
+  const bDecimalPlaces = Number(getFractionString(b).length);
+  const allDecimalPlaces = addition(aDecimalPlaces, bDecimalPlaces);
   const firstCyphers = a.split("");
-  const secondCyphers = b.split("");
+  const secondCyphers = deletePoint(b).split("");
   const arrayToSum = secondCyphers.map(
-    (cypher) =>
-      a *
-      cypher *
-      10 ** (secondCyphers.length - secondCyphers.indexOf(cypher) - 1)
+    (cypher, index) =>
+      deletePoint(a) * cypher * 10 ** (secondCyphers.length - index - 1)
   );
 
-  const result = arrayToSum.reduce(addition, 0);
+  /*   const arrayToIndices = secondCyphers.map((cypher, index) => index);
+  console.log(arrayToIndices); */
+
+  const provResult = arrayToSum.reduce(addition, 0);
+  const allPlaces = Number(provResult.toString().length);
+  const integerPlaces = provResult.toString().length - Number(allDecimalPlaces);
+  let result = provResult;
+  allDecimalPlaces == 0
+    ? (result = provResult)
+    : (result =
+        provResult.toString().substring(0, integerPlaces) +
+        "." +
+        provResult.toString().substring(integerPlaces, allPlaces));
 
   return (
     <div>
